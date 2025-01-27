@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Framework;
 
+// Class responsible for dispatching and registering routes
 class Router
 {
     private array $routes = [];
