@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-require __DIR__ . "/../../vendor/autoload.php"; //load files that composer generate
+require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App;
-use App\Controllers\HomeController;
+use App\Config\{Routes, MiddlewareRegistrator};
+use App\Config\Paths;
 
-$app = new App();
+$app = new App(Paths::SOURCE . "/App/container-definitions.php");
 
-$app->get('/', [HomeController::class, 'home']);
-
-// show_r($app);
+//Register Controller. HomeController::class - 'App\Controllers\HomeController', 'home' - method of HomeController class
+Routes::registerRoutes($app);
+MiddlewareRegistrator::registerMiddleware($app);
 
 return $app;
